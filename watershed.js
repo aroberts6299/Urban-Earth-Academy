@@ -44,10 +44,11 @@
   const length = route.getTotalLength();
   const duration = 10000;
   const stageStarts = [0, 2200, 5600, 8000];
+  const waterStageStarts = [0, 1600, 3000, 8000];
   const stories = {water: [
-    ['Rain falls beside the building.', 'Follow rainwater as it travels down the left side of the building toward the ground below.'],
-    ['Water follows the ground.', 'Runoff curves around the left edge of the building and continues downhill. Notice how the land shapes its path.'],
-    ['Green ground slows some runoff.', 'As water passes a grassy strip, soil and plants can slow and absorb some runoff. The remaining water continues toward the stream.'],
+    ['Rain reaches the flower box.', 'Follow rain down the left side of the yellow building into the flower box beside it.'],
+    ['Water reaches the planted soil.', 'The rainwater trail curves toward the flower box. Notice how this small planted space sits between the building and the stream.'],
+    ['The flower box holds some rain.', 'Soil and roots in the flower box retain some rainwater. Excess water drains onward toward the stream, showing how planted spaces can help manage water.'],
     ['The trail joins the stream.', 'Watch the water meet the stream on the left. Small flows around our buildings connect to a larger watershed.']
   ], nature: [
     ['Sunlight powers a living city.', 'The sun supplies energy to plants. Follow the golden rays from the sun to the neighborhood trees.'],
@@ -102,7 +103,7 @@
   function drawWater(time, still = false) {
     const t = time / 1000;
     // One continuous curve, sampled by distance, keeps droplets moving at a steady speed.
-    const travel = still ? [0, .42, .78, 1][Math.max(stage, 0)] : (time - 800) / 7500;
+    const travel = still ? [0, .18, .3, 1][Math.max(stage, 0)] : (time - 800) / 7500;
     const progress = clamp(travel);
     route.setAttribute('stroke-dashoffset', String(length * (1 - progress)));
     flowReveal.setAttribute('stroke-dashoffset', String(length * (1 - progress)));
@@ -115,8 +116,8 @@
       line.setAttribute('transform', `translate(0 ${still ? index % 2 * 16 : phase * 28})`);
       opacity(line, still ? 1 : Math.sin(phase * Math.PI));
     });
-    opacity(garden, still ? (stage >= 2 ? .4 : 0) : .4 * clamp((t - 5.4) / 1.3));
-    opacity(soil, still ? (stage >= 2 ? 1 : 0) : clamp((t - 5.4) / 1.3));
+    opacity(garden, still ? (stage >= 2 ? .4 : 0) : .4 * clamp((t - 3) / 1));
+    opacity(soil, still ? (stage >= 2 ? 1 : 0) : clamp((t - 3) / 1));
     drops.forEach((drop, index) => {
       const u = travel - index * .045;
       const point = route.getPointAtLength(length * clamp(u));
@@ -198,7 +199,8 @@
     if (!playing || !active || reducedMotion.matches) return;
     if (previousTime !== null) elapsed = Math.min(duration, elapsed + timestamp - previousTime);
     previousTime = timestamp;
-    const nextStage = elapsed >= 8000 ? 3 : elapsed >= 5600 ? 2 : elapsed >= 2200 ? 1 : 0;
+    const starts = mode === 'water' ? waterStageStarts : stageStarts;
+    const nextStage = elapsed >= starts[3] ? 3 : elapsed >= starts[2] ? 2 : elapsed >= starts[1] ? 1 : 0;
     setStage(nextStage);
     draw(elapsed);
     if (elapsed >= duration) pause();
@@ -238,7 +240,7 @@
     if (!active) { ({water: waterButton, nature: natureButton, energy: energyButton})[mode].click(); return; }
     if (reducedMotion.matches) {
       setStage((stage + 1) % stories[mode].length);
-      elapsed = stageStarts[stage];
+      elapsed = (mode === 'water' ? waterStageStarts : stageStarts)[stage];
       draw(elapsed, true);
       controls();
     } else if (playing) pause();

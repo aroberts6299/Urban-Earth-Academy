@@ -51,7 +51,7 @@
                 <pattern id="windows" width="22" height="28" patternUnits="userSpaceOnUse"><rect x="7" y="7" width="7" height="12" rx="1" fill="#8baba2"/></pattern>
                 <pattern id="solar" width="20" height="17" patternUnits="userSpaceOnUse"><path d="M0 0h20v17H0z" fill="#245c73" stroke="#a0cbd1" stroke-width="1"/></pattern>
                 <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#dceae3"/><stop offset="1" stop-color="#f7f4e8"/></linearGradient>
-                <mask id="watershed-flow-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="720" height="550"><path id="watershed-flow-reveal" d="M58 272C46 308 46 347 59 378S91 408 108 441" fill="none" stroke="white" stroke-width="10" stroke-linecap="round"/></mask>
+                <mask id="watershed-flow-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="720" height="550"><path id="watershed-flow-reveal" d="M58 272C49 290 46 307 46 323C50 329 58 333 65 336C68 350 58 366 63 381S91 408 108 441" fill="none" stroke="white" stroke-width="10" stroke-linecap="round"/></mask>
               </defs>
               <rect width="720" height="550" fill="url(#sky)"/>
               <circle cx="560" cy="102" r="47" fill="#f4ce70"/>
@@ -80,8 +80,8 @@
               <g fill="#457c51"><path d="M462 252c-10-32 17-62 45-59 35-2 57 36 37 63-18 30-67 29-82-4Z"/><path d="M540 228c-14-33 13-68 42-68 38-2 57 34 44 66-15 32-67 36-86 2Z"/><path d="M613 269c-8-24 11-47 33-47 28-3 45 26 32 49-13 23-52 22-65-2Z"/></g>
               <g fill="#7ca35f"><ellipse cx="508" cy="236" rx="24" ry="28"/><ellipse cx="579" cy="203" rx="23" ry="29"/></g>
               </g>
-              <g id="native-planter" stroke-linejoin="round">
-                <title>A raised planter with soil and native flowers, in the grass beside the trees</title>
+              <g id="native-planter" stroke-linejoin="round" transform="translate(-640 8)">
+                <title>A raised flower box in the grass left of the yellow building, receiving rain before excess water drains toward the stream</title>
                 <path d="m656 312 36-9 24 12-36 13Z" fill="#b78a52" stroke="#765636" stroke-width="2"/>
                 <path d="m656 312 24 16v14l-24-15Z" fill="#9b6c40" stroke="#765636" stroke-width="2"/>
                 <path d="m680 328 36-13v14l-36 13Z" fill="#ba8b54" stroke="#765636" stroke-width="2"/>
@@ -92,6 +92,7 @@
                   <path d="M670 307q-14-1-12-12 12 0 12 12m0-7q13 1 12-10-11 1-12 10m15 9q-14-1-12-11 12-1 12 11m0-12q13-1 12-12-12 1-12 12m15 13q12-1 11-10-10 0-11 10"/>
                 </g>
                 <g fill="#f2ce68" stroke="#dba64b" stroke-width="1"><circle cx="670" cy="287" r="6"/><circle cx="685" cy="281" r="7"/><circle cx="700" cy="291" r="6"/></g>
+                <circle cx="705" cy="328" r="2.5" fill="#375c50" stroke="#d4ad77" stroke-width="1"/>
                 <g fill="#785434"><circle cx="670" cy="287" r="2"/><circle cx="685" cy="281" r="2.5"/><circle cx="700" cy="291" r="2"/></g>
               </g>
               <g stroke="#173f35" stroke-width="3" stroke-linecap="round"><path d="m442 371 3-21m0 4 11 6m-12-1-9 7m9 4-10 12m9-10 8 11"/><path d="m607 369 2-19m0 4 10 6m-11-3-9 5m9 7-8 11m8-9 7 11"/></g>
@@ -107,13 +108,14 @@
                   <path d="m29 229-2 10"/><path d="m49 233-2 10"/><path d="m69 228-2 10"/>
                   <path d="m34 250-2 10"/><path d="m57 253-2 10"/><path d="m73 250-2 10"/>
                 </g>
-                <path id="watershed-guide" d="M58 272C46 308 46 347 59 378S91 408 108 441" fill="none" stroke="#e1f4ed" stroke-width="5" stroke-linecap="round" opacity=".3"/>
-                <path id="watershed-route" d="M58 272C46 308 46 347 59 378S91 408 108 441" fill="none" stroke="#3b91b1" stroke-width="4" stroke-linecap="round"/>
-                <path id="watershed-flow" mask="url(#watershed-flow-mask)" d="M58 272C46 308 46 347 59 378S91 408 108 441" fill="none" stroke="#c4edf0" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/>
-                <g id="watershed-soil" opacity="0" fill="#72a165" stroke="#477e4e" stroke-width="1.5">
-                  <path d="m30 395 6-10 3 10m-1-2 6-12 2 13m28 10 4-11 4 10m-2-1 7-12 1 11"/>
+                <path id="watershed-guide" d="M58 272C49 290 46 307 46 323C50 329 58 333 65 336C68 350 58 366 63 381S91 408 108 441" fill="none" stroke="#e1f4ed" stroke-width="5" stroke-linecap="round" opacity=".3"/>
+                <path id="watershed-route" d="M58 272C49 290 46 307 46 323C50 329 58 333 65 336C68 350 58 366 63 381S91 408 108 441" fill="none" stroke="#3b91b1" stroke-width="4" stroke-linecap="round"/>
+                <path id="watershed-flow" mask="url(#watershed-flow-mask)" d="M58 272C49 290 46 307 46 323C50 329 58 333 65 336C68 350 58 366 63 381S91 408 108 441" fill="none" stroke="#c4edf0" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/>
+                <ellipse id="watershed-garden" cx="46" cy="322" rx="24" ry="7" fill="#a2ce83" opacity="0"/>
+                <g id="watershed-soil" opacity="0" fill="none" stroke="#d5eed4" stroke-width="1.5">
+                  <ellipse cx="46" cy="322" rx="14" ry="4"/>
+                  <path d="M35 320v5m11-7v8m11-7v5"/>
                 </g>
-                <ellipse id="watershed-garden" cx="59" cy="398" rx="29" ry="11" fill="#92be79" opacity="0"/>
                 <g fill="#8ed8eb" stroke="#effcf8" stroke-width="1.5" id="watershed-drops">
                   <circle r="3.5"/><circle r="3.5"/><circle r="3"/><circle r="3"/><circle r="2.5"/>
                 </g>
