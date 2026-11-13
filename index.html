@@ -46,7 +46,7 @@
           <div class="landscape">
             <svg class="city-scene" viewBox="0 0 720 550" role="img" aria-labelledby="scene-title scene-desc">
               <title id="scene-title">A city connected by water, nature, and energy</title>
-              <desc id="scene-desc">An illustrated urban neighborhood with solar panels, a park and native plants, and rain flowing toward a river. The buttons below explain learning connections in each part of the city.</desc>
+              <desc id="scene-desc">An illustrated urban neighborhood with solar panels, sunlit trees, a planted garden, and a river. Choose Urban nature to explore sunlight, leaves, shade, and habitat, or Water to follow rain from a street through planted spaces toward the river.</desc>
               <defs>
                 <pattern id="windows" width="22" height="28" patternUnits="userSpaceOnUse"><rect x="7" y="7" width="7" height="12" rx="1" fill="#8baba2"/></pattern>
                 <pattern id="solar" width="20" height="17" patternUnits="userSpaceOnUse"><path d="M0 0h20v17H0z" fill="#245c73" stroke="#a0cbd1" stroke-width="1"/></pattern>
@@ -61,6 +61,7 @@
               <path d="M0 442c121-34 205 20 298 31s168-4 233-30 135-27 189-9" fill="none" stroke="#d9ebdc" stroke-width="4"/>
               <path d="M-20 373c119-9 194-3 285 25s171 17 246-15 151-30 219-15" fill="none" stroke="#e9e1bd" stroke-width="32"/>
               <path d="M-20 373c119-9 194-3 285 25s171 17 246-15 151-30 219-15" fill="none" stroke="#f9f4de" stroke-width="2" stroke-dasharray="9 9"/>
+              <g id="nature-shade" fill="#396b4b" opacity="0" aria-hidden="true"><ellipse cx="519" cy="326" rx="65" ry="15"/><ellipse cx="604" cy="328" rx="49" ry="12"/></g>
               <g stroke="#173f35" stroke-width="2" stroke-linejoin="round">
                 <path d="m80 238 153-35 74 37v132l-152 34-75-39z" fill="#e7bf7d"/>
                 <path d="m155 273 152-33v132l-152 34z" fill="#f1d99e"/>
@@ -73,29 +74,28 @@
                 <path d="m318 229 83-18 40 24-82 18z" fill="#e6ebd0"/>
                 <path d="M376 273v17m24-23v17m23-22v17m-47 28v17m24-23v17m23-22v17" stroke="#527b70" stroke-width="7"/>
               </g>
+              <g id="nature-trees">
               <g stroke="#52764d" stroke-width="5"><path d="M506 335V219m76 110V198m64 143V244"/></g>
               <g fill="#457c51"><path d="M462 252c-10-32 17-62 45-59 35-2 57 36 37 63-18 30-67 29-82-4Z"/><path d="M540 228c-14-33 13-68 42-68 38-2 57 34 44 66-15 32-67 36-86 2Z"/><path d="M613 269c-8-24 11-47 33-47 28-3 45 26 32 49-13 23-52 22-65-2Z"/></g>
               <g fill="#7ca35f"><ellipse cx="508" cy="236" rx="24" ry="28"/><ellipse cx="579" cy="203" rx="23" ry="29"/></g>
+              </g>
               <g stroke="#416f46" stroke-width="3"><path d="m463 366 70-15 47 22-74 18z" fill="#b9a978"/><path d="m463 366 43 20 74-13v9l-73 18-44-21z" fill="#99885e"/><path d="m480 361 4-18m18 16 4-25m18 19 7-18m17 27 5-18"/></g>
               <g fill="#f3cc69"><circle cx="484" cy="341" r="5"/><circle cx="506" cy="332" r="5"/><circle cx="531" cy="333" r="5"/><circle cx="553" cy="343" r="5"/></g>
-              <g stroke="#eaf7ea" stroke-width="3" stroke-linecap="round"><path d="m349 381 15 20 34 15 27 31" stroke-dasharray="5 7" fill="none"/><path d="m415 445 12 5 1-13" fill="none"/></g>
-              <g fill="#dbeedb" opacity=".8"><path d="m331 365 4-9 4 9a4 4 0 1 1-8 0m21-4 4-9 4 9a4 4 0 1 1-8 0"/></g>
               <g stroke="#173f35" stroke-width="3" stroke-linecap="round"><path d="m442 371 3-21m0 4 11 6m-12-1-9 7m9 4-10 12m9-10 8 11"/><path d="m607 369 2-19m0 4 10 6m-11-3-9 5m9 7-8 11m8-9 7 11"/></g>
               <g fill="#173f35"><circle cx="446" cy="344" r="7"/><circle cx="610" cy="344" r="7"/></g>
               <path d="M73 479h52m-30 13h47m402 14h48m-20-13h39" stroke="#d8e9dc" stroke-width="3" stroke-linecap="round"/>
               <g fill="#173f35" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5"><text x="35" y="522">A NEIGHBORHOOD. MANY CONNECTIONS.</text><text x="648" y="522">UEA</text></g>
             
               <g id="watershed-animation" class="watershed-animation" aria-hidden="true">
-                <g id="watershed-cloud" fill="#f7fcff" stroke="#83b8d0" stroke-width="1.5">
+                <g id="watershed-cloud" fill="#f7fcff" stroke="#83b8d0" stroke-width="1.5" transform="translate(215 -25)">
                   <path d="M128 103c-16-3-19-28-1-33 1-24 35-30 46-9 24-11 48 11 39 30 17 9 10 27-9 27h-65c-7 0-11-7-10-15Z"/>
                 </g>
                 <g id="watershed-rain" stroke="#287fa9" stroke-width="3" stroke-linecap="round">
-                  <path d="m141 127-4 12"/><path d="m166 126-4 12"/><path d="m191 131-4 12"/>
-                  <path d="m154 150-4 12"/><path d="m181 153-4 12"/><path d="m208 148-4 12"/>
+                  <path d="m349 310-4 12"/><path d="m372 312-4 12"/><path d="m395 310-4 12"/>
+                  <path d="m355 331-4 12"/><path d="m380 334-4 12"/><path d="m405 330-4 12"/>
                 </g>
-                <path id="watershed-roof" d="m96 231 123-27 55 28-122 28Z" fill="#66c5e8" opacity="0"/>
-                <path id="watershed-guide" d="M195 231 289 249 307 250 307 372Q365 407 443 377L494 371Q526 389 552 439" fill="none" stroke="#fffef8" stroke-width="8" stroke-linecap="round" opacity=".8"/>
-                <path id="watershed-route" d="M195 231 289 249 307 250 307 372Q365 407 443 377L494 371Q526 389 552 439" fill="none" stroke="#287fa9" stroke-width="4" stroke-linecap="round"/>
+                <path id="watershed-guide" d="M357 399Q397 411 443 391L494 376Q526 389 552 439" fill="none" stroke="#fffef8" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+                <path id="watershed-route" d="M357 399Q397 411 443 391L494 376Q526 389 552 439" fill="none" stroke="#287fa9" stroke-width="4" stroke-linecap="round"/>
                 <ellipse id="watershed-garden" cx="512" cy="376" rx="43" ry="22" fill="#c9e89f" stroke="#3d7751" stroke-width="3" opacity="0"/>
                 <g id="watershed-soil" stroke="#287fa9" stroke-width="2.5" stroke-linecap="round" opacity="0">
                   <path d="M490 383v15m-4-5 4 5 4-5M510 388v19m-4-5 4 5 4-5M531 389v15m-4-5 4 5 4-5"/>
@@ -105,6 +105,23 @@
                 </g>
                 <g id="watershed-ripples" fill="none" stroke="#f4fcff" stroke-width="3" opacity="0">
                   <ellipse cx="552" cy="452" rx="12" ry="5"/><ellipse cx="552" cy="452" rx="23" ry="9"/>
+                </g>
+              </g>
+              <g id="nature-animation" class="watershed-animation" aria-hidden="true">
+                <circle id="nature-halo" cx="560" cy="102" r="56" fill="#f8d982" opacity="0"/>
+                <g id="nature-rays" fill="none" stroke="#d9a333" stroke-width="3" stroke-linecap="round">
+                  <path d="M560 41V28m31 21 7-11m15 33 12-7m-4 38h15m-23 31 12 7m-34 15 7 11m-38-3v14m-31-22-7 11m-15-33-12 7m4-38h-14m22-31-12-7m34-15-7-11"/>
+                </g>
+                <g id="nature-sunlight" stroke="#e9b94f" stroke-width="5" stroke-linecap="round" fill="none">
+                  <path d="M531 147 514 186"/><path d="M567 157 575 181"/><path d="M598 148 633 214"/>
+                </g>
+                <g id="nature-leaves" fill="#acd279" stroke="#3c7045" stroke-width="2">
+                  <g transform="translate(506 231)"><path d="M0 0C-28 0-29-23-26-29-6-28 4-13 0 0Z"/><path d="M0 0C25 2 33-17 32-25 10-28-1-12 0 0Z"/><path d="M0 9V-3m0 3-17-19M0 0l21-16" fill="none"/></g>
+                  <g transform="translate(582 204)"><path d="M0 0C-28 0-29-23-26-29-6-28 4-13 0 0Z"/><path d="M0 0C25 2 33-17 32-25 10-28-1-12 0 0Z"/><path d="M0 9V-3m0 3-17-19M0 0l21-16" fill="none"/></g>
+                  <g transform="translate(646 258)"><path d="M0 0C-23 0-24-19-22-24-5-23 3-11 0 0Z"/><path d="M0 0C21 2 27-14 26-21 8-23-1-10 0 0Z"/><path d="M0 8V-3m0 3-14-16M0 0l17-13" fill="none"/></g>
+                </g>
+                <g id="nature-birds" fill="none" stroke="#284e3b" stroke-width="3" stroke-linecap="round">
+                  <path d="M631 168q8-10 16 0 8-10 16 0"/><path d="M603 146q6-8 12 0 6-8 12 0"/>
                 </g>
               </g>
             </svg>
@@ -117,14 +134,14 @@
           <div class="field-note" aria-live="polite" aria-atomic="true"><span class="note-number" id="scene-number">01</span><div><h2 id="scene-heading">A park is a living laboratory.</h2><p id="scene-copy">Observe species, compare habitats, and investigate how trees and native plants support an urban ecosystem.</p></div></div>
           <div class="watershed-player" id="watershed-player" hidden>
             <div class="watershed-toolbar">
-              <p id="watershed-label">Follow the water <span>10-second illustration</span></p>
-              <div class="watershed-buttons" role="group" aria-label="Water journey controls">
-                <button type="button" id="watershed-play" aria-controls="watershed-animation">Play water journey</button>
-                <button type="button" id="watershed-replay" aria-controls="watershed-animation" disabled>Replay</button>
+              <p id="watershed-label">Sun, trees &amp; water <span>10-second illustration</span></p>
+              <div class="watershed-buttons" role="group" aria-label="Living classroom animation controls">
+                <button type="button" id="watershed-play" aria-controls="nature-animation watershed-animation">Play nature story</button>
+                <button type="button" id="watershed-replay" aria-controls="nature-animation watershed-animation" disabled>Replay</button>
               </div>
             </div>
-            <ol class="watershed-steps" aria-label="Water journey stages">
-              <li><span>1</span>Rainfall</li><li><span>2</span>Runoff</li><li><span>3</span>Green spaces</li><li><span>4</span>Waterway</li>
+            <ol class="watershed-steps" aria-label="Animation stages">
+              <li><span>1</span>Sunlight</li><li><span>2</span>Leaves</li><li><span>3</span>Shade</li><li><span>4</span>Habitat</li>
             </ol>
           </div>
         </div>

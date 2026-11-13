@@ -3,3 +3,5 @@
 @media(max-width:800px){.watershed-player{padding:17px 22px}.watershed-toolbar p{font-size:11px}.watershed-toolbar p span{font-size:9px}.watershed-buttons button{font-size:10px;padding:8px 10px}.watershed-steps li{font-size:10px;gap:6px}}
 @media(max-width:440px){.watershed-player{padding:15px 16px}.watershed-toolbar{gap:8px;align-items:center}.watershed-toolbar p{font-size:10px;max-width:115px}.watershed-toolbar p span{font-size:8px}.watershed-buttons{gap:5px}.watershed-buttons button{font-size:9px;padding:8px}.watershed-steps li{font-size:8px;gap:4px}.watershed-steps li>span{font-size:7px}}
 @media print{.watershed-player,.watershed-animation{display:none!important}}
+
+.watershed-player[data-story="nature"] .watershed-steps li[aria-current="step"]{border-color:#b98528}
