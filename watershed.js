@@ -9,6 +9,18 @@
   const playButton = document.getElementById('watershed-play');
   const replayButton = document.getElementById('watershed-replay');
   const label = document.querySelector('#watershed-label span');
+  const energyButton = document.querySelector('[data-scene="energy"]');
+  const energyOverlay = document.getElementById('energy-animation');
+  const energyHalo = document.getElementById('energy-halo');
+  const energyRays = document.getElementById('energy-rays');
+  const beam = document.getElementById('energy-beam');
+  const photons = document.getElementById('energy-photons');
+  const panel = document.getElementById('energy-panel');
+  const wire = document.getElementById('energy-wire');
+  const lights = document.getElementById('energy-lights');
+  const windowGlow = document.getElementById('energy-window-glow');
+  const flow = document.getElementById('watershed-flow');
+  const flowReveal = document.getElementById('watershed-flow-reveal');
   const natureButton = document.querySelector('[data-scene="nature"]');
   const natureOverlay = document.getElementById('nature-animation');
   const trees = document.getElementById('nature-trees');
@@ -33,17 +45,22 @@
   const duration = 10000;
   const stageStarts = [0, 2200, 5600, 8000];
   const stories = {water: [
-    ['Rain falls on the street.', 'Rain lands on the paved street between the buildings and the green space. Follow runoff as it begins its journey toward the river.'],
-    ['Water moves through the city.', 'Water follows the street toward a planted area. This simplified trail shows how pavement and green spaces connect to a local waterway.'],
-    ['Plants change the journey.', 'Soil and planted areas can slow and absorb some runoff. Green spaces connect neighborhood care with watershed health.'],
-    ['Every street belongs to a watershed.', 'Water that continues downstream reaches local waterways. Caring for streets and green spaces supports the larger watershed.']
+    ['Rain falls beside the building.', 'Follow rainwater as it travels down the left side of the building toward the ground below.'],
+    ['Water follows the ground.', 'Runoff curves around the left edge of the building and continues downhill. Notice how the land shapes its path.'],
+    ['Green ground slows some runoff.', 'As water passes a grassy strip, soil and plants can slow and absorb some runoff. The remaining water continues toward the stream.'],
+    ['The trail joins the stream.', 'Watch the water meet the stream on the left. Small flows around our buildings connect to a larger watershed.']
   ], nature: [
     ['Sunlight powers a living city.', 'The sun supplies energy to plants. Follow the golden rays from the sun to the neighborhood trees.'],
     ['Leaves turn sunlight into food.', 'Through photosynthesis, leaves use sunlight, water, and carbon dioxide to make sugars that help trees grow.'],
     ['Tree canopies create shade.', 'Leaves intercept sunlight and shade the ground below. Compare a shaded green space with an open paved surface.'],
     ['Trees make room for life.', 'Branches and leaves offer shelter and habitat for birds and other wildlife. A small urban green space is part of a larger ecosystem.']
+  ], energy: [
+    ['Sunlight reaches the solar panel.', 'Golden rays travel from the sun to the rooftop panel. Sunlight supplies the energy for this simple solar story.'],
+    ['Solar cells generate electricity.', 'The panel converts sunlight into electricity. The bright rooftop highlight shows where that conversion begins.'],
+    ['Electricity reaches the building.', 'Through the building’s electrical equipment, solar electricity can power everyday devices. Follow the golden connection toward the windows.'],
+    ['The building lights turn on.', 'All the windows light up as solar electricity powers the lights. This illustration connects a renewable energy source with a familiar use.']
   ]};
-  const stageNames = {water: ['Rainfall', 'Runoff', 'Green spaces', 'Waterway'], nature: ['Sunlight', 'Leaves', 'Shade', 'Habitat']};
+  const stageNames = {water: ['Rainfall', 'Runoff', 'Green spaces', 'Waterway'], nature: ['Sunlight', 'Leaves', 'Shade', 'Habitat'], energy: ['Sunlight', 'Solar panel', 'Electricity', 'Lights on']};
   let mode = 'nature';
   let active = false;
   let playing = false;
@@ -55,6 +72,7 @@
   const opacity = (element, value) => element.setAttribute('opacity', String(value));
 
   route.setAttribute('stroke-dasharray', String(length));
+  flowReveal.setAttribute('stroke-dasharray', String(length));
 
   function setStage(next, force = false) {
     if (next === stage && !force) return;
@@ -74,34 +92,64 @@
     player.classList.toggle('is-reduced', reducedMotion.matches);
     player.dataset.playback = !active ? 'idle' : reducedMotion.matches ? 'step-by-step' : playing ? 'playing' : elapsed >= duration ? 'complete' : 'paused';
     player.dataset.story = mode;
-    document.querySelector('#watershed-label').firstChild.textContent = mode === 'nature' ? 'Sun & trees ' : 'Follow the water ';
+    document.querySelector('#watershed-label').firstChild.textContent = {nature: 'Sun & trees ', water: 'Follow the water ', energy: 'Sunlight to lights '}[mode];
     label.textContent = reducedMotion.matches ? 'Reduced motion · step-by-step' : '10-second illustration';
     replayButton.disabled = !active;
-    playButton.textContent = !active ? (reducedMotion.matches ? (mode === 'nature' ? 'Explore nature story' : 'Explore water journey') : (mode === 'nature' ? 'Play nature story' : 'Play water journey')) : reducedMotion.matches ? (stage === 3 ? 'Start again' : 'Next step') : playing ? 'Pause' : elapsed >= duration ? 'Play again' : 'Resume';
+    const storyLabel = {nature: 'nature story', water: 'water journey', energy: 'energy story'}[mode];
+    playButton.textContent = !active ? `${reducedMotion.matches ? 'Explore' : 'Play'} ${storyLabel}` : reducedMotion.matches ? (stage === 3 ? 'Start again' : 'Next step') : playing ? 'Pause' : elapsed >= duration ? 'Play again' : 'Resume';
   }
 
   function drawWater(time, still = false) {
     const t = time / 1000;
-    const progress = still ? [0, .42, .78, 1][Math.max(stage, 0)] : clamp((time - 1700) / 6900);
+    // One continuous curve, sampled by distance, keeps droplets moving at a steady speed.
+    const travel = still ? [0, .42, .78, 1][Math.max(stage, 0)] : (time - 800) / 7500;
+    const progress = clamp(travel);
     route.setAttribute('stroke-dashoffset', String(length * (1 - progress)));
-    opacity(cloud, still ? (stage === 0 ? 1 : .4) : 1 - .6 * clamp((t - 3) / 3));
-    opacity(rain, still ? (stage === 0 ? 1 : 0) : 1 - clamp((t - 2.7) / 1.5));
-    rainLines.forEach((line, index) => line.setAttribute('transform', `translate(0 ${still ? index % 2 * 14 : ((t * 38 + index * 13) % 68)})`));
-    opacity(garden, still ? (stage >= 2 ? .68 : 0) : .68 * clamp((t - 5.6) / .7));
-    opacity(soil, still ? (stage >= 2 ? 1 : 0) : clamp((t - 6) / .7));
+    flowReveal.setAttribute('stroke-dashoffset', String(length * (1 - progress)));
+    opacity(flow, still ? (stage > 0 ? .8 : 0) : clamp(travel * 4));
+    flow.setAttribute('stroke-dashoffset', String(still ? 0 : -t * 22));
+    opacity(cloud, still ? (stage === 0 ? 1 : .35) : 1 - .65 * clamp((t - 2.5) / 3));
+    opacity(rain, still ? (stage === 0 ? 1 : 0) : 1 - clamp((t - 2.5) / 2));
+    rainLines.forEach((line, index) => {
+      const phase = (t * .6 + index / rainLines.length) % 1;
+      line.setAttribute('transform', `translate(0 ${still ? index % 2 * 16 : phase * 70})`);
+      opacity(line, still ? 1 : Math.sin(phase * Math.PI));
+    });
+    opacity(garden, still ? (stage >= 2 ? .4 : 0) : .4 * clamp((t - 5.4) / 1.3));
+    opacity(soil, still ? (stage >= 2 ? 1 : 0) : clamp((t - 5.4) / 1.3));
     drops.forEach((drop, index) => {
-      const pointProgress = Math.max(0, progress - index * .034);
-      const point = route.getPointAtLength(length * pointProgress);
+      const u = travel - index * .045;
+      const point = route.getPointAtLength(length * clamp(u));
       drop.setAttribute('cx', String(point.x));
       drop.setAttribute('cy', String(point.y));
-      opacity(drop, still ? (stage === 0 ? 0 : 1 - index * .18) : (time < 1500 ? 0 : 1 - index * .18));
+      opacity(drop, still ? (stage > 0 && stage < 3 ? .9 : 0) : clamp(u / .05) * clamp((1 - u) / .06));
     });
-    opacity(ripples, still ? (stage === 3 ? .9 : 0) : clamp((t - 8) / .6));
+    opacity(ripples, still ? (stage === 3 ? .8 : 0) : .8 * clamp((t - 8.1) / .8));
     rippleLines.forEach((ripple, index) => {
-      const growth = still ? 1 : clamp((t - 8 - index * .25) / 1.5);
-      ripple.setAttribute('rx', String(10 + growth * (25 + index * 12)));
-      ripple.setAttribute('ry', String(4 + growth * (9 + index * 4)));
+      const growth = still ? 1 : clamp((t - 8.1 - index * .2) / 1.4);
+      ripple.setAttribute('rx', String(5 + growth * (12 + index * 9)));
+      ripple.setAttribute('ry', String(2 + growth * (4 + index * 3)));
     });
+  }
+
+  function drawEnergy(time, still = false) {
+    const t = time / 1000;
+    const panelProgress = still ? (stage >= 1 ? 1 : 0) : clamp((t - 2.2) / 1);
+    const powerProgress = still ? (stage >= 2 ? 1 : 0) : clamp((t - 5.6) / 1);
+    const lightProgress = still ? (stage === 3 ? 1 : 0) : clamp((t - 8) / .7);
+    opacity(energyHalo, .25);
+    opacity(energyRays, .85);
+    energyRays.setAttribute('transform', `rotate(${still ? 0 : t} 560 102)`);
+    opacity(beam, still ? .24 : .24 * clamp(t / 1.2));
+    opacity(photons, still ? .85 : clamp(t / 1.2));
+    photons.setAttribute('stroke-dasharray', '12 22');
+    photons.setAttribute('stroke-dashoffset', String(still ? 0 : -t * 38));
+    opacity(panel, .38 * panelProgress);
+    opacity(wire, powerProgress);
+    wire.setAttribute('stroke-dasharray', '5 5');
+    wire.setAttribute('stroke-dashoffset', String(still ? 0 : -t * 18));
+    opacity(windowGlow, .16 * lightProgress);
+    opacity(lights, lightProgress);
   }
 
   function drawNature(time, still = false) {
@@ -126,12 +174,14 @@
 
   function draw(time, still = false) {
     if (mode === 'water') drawWater(time, still);
+    else if (mode === 'energy') drawEnergy(time, still);
     else drawNature(time, still);
   }
 
   function clearScene() {
     overlay.classList.remove('is-visible');
     natureOverlay.classList.remove('is-visible');
+    energyOverlay.classList.remove('is-visible');
     opacity(shade, 0);
     trees.removeAttribute('transform');
   }
@@ -171,7 +221,7 @@
     steps.forEach((item, index) => { item.lastChild.textContent = stageNames[mode][index]; });
     active = true;
     elapsed = 0;
-    (mode === 'water' ? overlay : natureOverlay).classList.add('is-visible');
+    ({water: overlay, nature: natureOverlay, energy: energyOverlay})[mode].classList.add('is-visible');
     setStage(0, true);
     draw(0, reducedMotion.matches);
     if (reducedMotion.matches) controls();
@@ -180,22 +230,12 @@
 
   document.querySelectorAll('.scene-pin').forEach(button => {
     button.addEventListener('click', () => {
-      if (button === waterButton) begin('water');
-      else if (button === natureButton) begin('nature');
-      else {
-        pause();
-        active = false;
-        elapsed = 0;
-        stage = -1;
-        clearScene();
-        steps.forEach(item => { item.removeAttribute('aria-current'); item.classList.remove('is-complete'); });
-        controls();
-      }
+      begin(button.dataset.scene);
     });
   });
 
   playButton.addEventListener('click', () => {
-    if (!active) { (mode === 'water' ? waterButton : natureButton).click(); return; }
+    if (!active) { ({water: waterButton, nature: natureButton, energy: energyButton})[mode].click(); return; }
     if (reducedMotion.matches) {
       setStage((stage + 1) % stories[mode].length);
       elapsed = stageStarts[stage];

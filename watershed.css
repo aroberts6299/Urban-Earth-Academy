@@ -5,3 +5,5 @@
 @media print{.watershed-player,.watershed-animation{display:none!important}}
 
 .watershed-player[data-story="nature"] .watershed-steps li[aria-current="step"]{border-color:#b98528}
+
+.watershed-player[data-story="energy"] .watershed-steps li[aria-current="step"]{border-color:#b98528}
