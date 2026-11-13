@@ -8,7 +8,9 @@
   <title>Urban Earth Academy | Where the City Becomes the Classroom</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./watershed.css">
   <script src="./app.js" defer></script>
+  <script src="./watershed.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -82,6 +84,29 @@
               <g fill="#173f35"><circle cx="446" cy="344" r="7"/><circle cx="610" cy="344" r="7"/></g>
               <path d="M73 479h52m-30 13h47m402 14h48m-20-13h39" stroke="#d8e9dc" stroke-width="3" stroke-linecap="round"/>
               <g fill="#173f35" font-family="system-ui,sans-serif" font-size="11" font-weight="700" letter-spacing="1.5"><text x="35" y="522">A NEIGHBORHOOD. MANY CONNECTIONS.</text><text x="648" y="522">UEA</text></g>
+            
+              <g id="watershed-animation" class="watershed-animation" aria-hidden="true">
+                <g id="watershed-cloud" fill="#f7fcff" stroke="#83b8d0" stroke-width="1.5">
+                  <path d="M128 103c-16-3-19-28-1-33 1-24 35-30 46-9 24-11 48 11 39 30 17 9 10 27-9 27h-65c-7 0-11-7-10-15Z"/>
+                </g>
+                <g id="watershed-rain" stroke="#287fa9" stroke-width="3" stroke-linecap="round">
+                  <path d="m141 127-4 12"/><path d="m166 126-4 12"/><path d="m191 131-4 12"/>
+                  <path d="m154 150-4 12"/><path d="m181 153-4 12"/><path d="m208 148-4 12"/>
+                </g>
+                <path id="watershed-roof" d="m96 231 123-27 55 28-122 28Z" fill="#66c5e8" opacity="0"/>
+                <path id="watershed-guide" d="M195 231 289 249 307 250 307 372Q365 407 443 377L494 371Q526 389 552 439" fill="none" stroke="#fffef8" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+                <path id="watershed-route" d="M195 231 289 249 307 250 307 372Q365 407 443 377L494 371Q526 389 552 439" fill="none" stroke="#287fa9" stroke-width="4" stroke-linecap="round"/>
+                <ellipse id="watershed-garden" cx="512" cy="376" rx="43" ry="22" fill="#c9e89f" stroke="#3d7751" stroke-width="3" opacity="0"/>
+                <g id="watershed-soil" stroke="#287fa9" stroke-width="2.5" stroke-linecap="round" opacity="0">
+                  <path d="M490 383v15m-4-5 4 5 4-5M510 388v19m-4-5 4 5 4-5M531 389v15m-4-5 4 5 4-5"/>
+                </g>
+                <g fill="#2c96c8" stroke="#fffef8" stroke-width="3" id="watershed-drops">
+                  <circle r="7"/><circle r="5"/><circle r="4"/>
+                </g>
+                <g id="watershed-ripples" fill="none" stroke="#f4fcff" stroke-width="3" opacity="0">
+                  <ellipse cx="552" cy="452" rx="12" ry="5"/><ellipse cx="552" cy="452" rx="23" ry="9"/>
+                </g>
+              </g>
             </svg>
             <div class="scene-pins" role="group" aria-label="Explore the illustrated city">
               <button class="scene-pin pin-energy" data-scene="energy" aria-pressed="false"><span aria-hidden="true">↗</span> Energy</button>
@@ -90,6 +115,18 @@
             </div>
           </div>
           <div class="field-note" aria-live="polite" aria-atomic="true"><span class="note-number" id="scene-number">01</span><div><h2 id="scene-heading">A park is a living laboratory.</h2><p id="scene-copy">Observe species, compare habitats, and investigate how trees and native plants support an urban ecosystem.</p></div></div>
+          <div class="watershed-player" id="watershed-player" hidden>
+            <div class="watershed-toolbar">
+              <p id="watershed-label">Follow the water <span>10-second illustration</span></p>
+              <div class="watershed-buttons" role="group" aria-label="Water journey controls">
+                <button type="button" id="watershed-play" aria-controls="watershed-animation">Play water journey</button>
+                <button type="button" id="watershed-replay" aria-controls="watershed-animation" disabled>Replay</button>
+              </div>
+            </div>
+            <ol class="watershed-steps" aria-label="Water journey stages">
+              <li><span>1</span>Rainfall</li><li><span>2</span>Runoff</li><li><span>3</span>Green spaces</li><li><span>4</span>Waterway</li>
+            </ol>
+          </div>
         </div>
       </div>
       <div class="wrap program-facts" aria-label="Program at a glance"><div><strong>12</strong><span>weeks of connected learning</span></div><div><strong>6</strong><span>core learning modules</span></div><div><strong>2</strong><span>distinct school curricula</span></div><div><strong>1</strong><span>culminating youth action project</span></div></div>
@@ -150,4 +187,5 @@
   <noscript><div class="noscript">For the interactive curriculum, module, and impact views, enable JavaScript. Contact <a href="mailto:info@phase3training.org">info@phase3training.org</a> for a program walkthrough.</div></noscript>
 </body>
 </html>
+
 
