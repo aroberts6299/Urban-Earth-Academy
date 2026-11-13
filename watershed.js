@@ -112,7 +112,7 @@
     opacity(rain, still ? (stage === 0 ? 1 : 0) : 1 - clamp((t - 2.5) / 2));
     rainLines.forEach((line, index) => {
       const phase = (t * .6 + index / rainLines.length) % 1;
-      line.setAttribute('transform', `translate(0 ${still ? index % 2 * 16 : phase * 70})`);
+      line.setAttribute('transform', `translate(0 ${still ? index % 2 * 16 : phase * 28})`);
       opacity(line, still ? 1 : Math.sin(phase * Math.PI));
     });
     opacity(garden, still ? (stage >= 2 ? .4 : 0) : .4 * clamp((t - 5.4) / 1.3));
