@@ -11,12 +11,12 @@ const curricula = {
     ]
   },
   high: {
-    name: 'High school', title: 'Investigation becomes leadership.',
-    summary: 'Students move into deeper investigation, interpret local environmental evidence, and develop responses that connect community priorities with sustainability and green career pathways.',
+    name: 'High school', title: 'Prepare to guide the next generation.',
+    summary: 'Build environmental knowledge and practice guiding younger campers. This 12-week curriculum prepares students to apply for summer roles as Urban Earth Camp counselors or environmental ambassadors, combining supervised activity leadership with workplace readiness.',
     details: [
-      ['◎', 'Learning approach', 'Investigate, compare evidence, evaluate options, and communicate a reasoned response.'],
-      ['⌁', 'Sample experience', 'Compare habitat conditions, trace runoff through a neighborhood, and examine solar-energy applications.'],
-      ['↗', 'Student expression', 'Develop a team action proposal or stewardship project, explain the evidence, and connect it to environmental careers.']
+      ['◎', 'Counselor skills', 'Practice inclusive group routines, encourage younger campers, communicate with teammates, and know when to seek support from adult staff.'],
+      ['⌁', 'Ambassador skills', 'Welcome campers and families, explain local environmental connections, and lead short, engaging STEM activities under staff supervision.'],
+      ['↗', 'Summer employment readiness', 'Build reliability, professional communication, an activity portfolio, a résumé, and interview skills through practice and feedback.']
     ]
   }
 };
@@ -26,37 +26,43 @@ const modules = [
     title: 'Urban Nature & Ecology', phase: 'Observe', weeks: '1–2',
     summary: 'Start with the ecosystem outside the door. Explore biodiversity, local habitats, and the relationships between living things and the built environment.',
     middle: ['Create a field journal of plants and animals in a nearby green space. Compare what lives in sunny and shaded areas.', 'A habitat map and observations students can explain to their peers.'],
-    high: ['Compare biodiversity and habitat conditions across two nearby spaces. Use observations to discuss how the built environment affects urban life.', 'A comparison of local habitats supported by field observations.']
+    highSummary: "Learn urban ecology while practicing the welcome, observation, and explanation skills used by camp counselors and environmental ambassadors.", highPhase: "Welcome & explain",
+    high: ["Design and practice a short habitat walk for middle school campers. Rehearse welcoming a group, asking open questions, and helping every camper contribute.","A camper-friendly habitat activity card and feedback on welcoming and explaining."]
   },
   {
     title: 'Water & Watersheds', phase: 'Trace', weeks: '3–4',
     summary: 'Follow the path of water through the city. Connect rainfall, runoff, water quality, local waterways, and environmental health.',
     middle: ['Use a simple watershed model to see where rainwater goes. Map how water moves from a schoolyard or recreation center toward a local waterway.', 'An annotated water-flow map connecting a familiar place to its watershed.'],
-    high: ['Trace neighborhood runoff routes and compare paved and planted surfaces. Investigate how land use can affect water quality and identify a possible response.', 'A runoff investigation with an evidence-based recommendation.']
+    highSummary: "Turn watershed knowledge into an engaging camp activity. Practice clear instructions, materials preparation, and checks for understanding.", highPhase: "Plan & demonstrate",
+    high: ["Build a runoff model and teach a short demonstration to peers acting as campers. Assign setup and cleanup roles, explain key ideas simply, and adapt after feedback.","A water activity plan with materials, teaching prompts, and setup and cleanup steps."]
   },
   {
     title: 'Outdoor Exploration & Skills', phase: 'Navigate', weeks: '5–6',
     summary: 'Build the skills to learn outdoors with greater confidence. Practice navigation, field observation, outdoor safety, and Leave No Trace principles.',
     middle: ['Work with a team to read a map, identify landmarks, and follow a guided route while practicing responsible outdoor habits.', 'A field-skills checklist and a reflection on confidence learning outdoors.'],
-    high: ['Plan a local field route, identify access and safety considerations, and explain how the team will minimize its environmental impact.', 'A route plan that brings together navigation, preparation, and responsible field practice.']
+    highSummary: "Prepare to support outdoor camp routines under adult staff supervision, with attention to access, group communication, and responsible field habits.", highPhase: "Support outdoor groups",
+    high: ["Rehearse a staff-approved outdoor route with head counts, buddy routines, transitions, and inclusive participation. Practice identifying concerns and communicating them to adult staff.","A route and group-routine checklist with a practice reflection and staff feedback."]
   },
   {
     title: 'Environmental Stewardship', phase: 'Care', weeks: '7–8',
     summary: 'Explore how everyday choices can support shared spaces. Connect waste, native plants, pollinators, and neighborhood care to practical stewardship.',
     middle: ['Explore pollinator needs or waste in a shared space. Choose a small team action, such as a native-plant activity or a waste-awareness project.', 'A documented stewardship activity with a student explanation of why it matters.'],
-    high: ['Assess a local stewardship need, compare possible actions, and build a team plan that considers resources, community benefit, and ongoing care.', 'A stewardship plan with a clear purpose, roles, and a way to document progress.']
+    highSummary: "Connect stewardship with the daily work of caring for shared spaces and helping younger campers work together.", highPhase: "Include & encourage",
+    high: ["Plan a small camp stewardship activity. Role-play encouraging participation, responding calmly to disagreements, sharing responsibilities, and referring concerns to adult staff.","An inclusive stewardship activity plan and examples of supportive camper communication."]
   },
   {
     title: 'Renewable Energy & Our Environment', phase: 'Connect', weeks: '9–10',
     summary: 'Connect energy use to environmental choices. Explore solar energy, climate connections, and the people working in clean energy and infrastructure.',
     middle: ['Test a simple solar model and notice how light conditions change its performance. Explore where renewable energy appears in everyday life.', 'A model or demonstration that explains how sunlight can be used as energy.'],
-    high: ['Investigate a solar-energy application, compare conditions that affect its use, and connect the investigation to clean-energy roles and skills.', 'An energy-use explanation linking a practical application with a green career pathway.']
+    highSummary: "Use renewable energy to practice leading a hands-on STEM station and completing the teamwork and task handoffs expected in a summer role.", highPhase: "Facilitate & collaborate",
+    high: ["Lead a camper-friendly solar-model station. Rotate facilitator, materials, and welcome roles; adapt explanations for different learners and practice punctuality, preparation, and team handoffs.","A ready-to-use solar activity card and a teamwork and communication reflection."]
   },
   {
     title: 'Youth Environmental Action', phase: 'Lead', weeks: '11–12',
     summary: 'Bring the learning together. Teams use their discoveries to develop a local project, presentation, or stewardship action and share what they have learned.',
     middle: ['Choose a local issue the group explored. Create a team model, presentation, or stewardship action that shares one clear idea with others.', 'A youth-created project and reflection showing how learning connects to community care.'],
-    high: ['Use evidence from earlier modules to develop a community-focused action project or proposal. Present the rationale, next steps, and relevant environmental career connections.', 'A project or proposal with supporting evidence, a team presentation, and reflection.']
+    highSummary: "Bring environmental learning and camp leadership together in a supervised practice session, then prepare to apply for available summer opportunities.", highPhase: "Demonstrate & apply",
+    high: ["Plan and deliver a mini camp session for peers under staff supervision. Assemble activity plans and feedback into a portfolio, prepare a résumé, and practice an interview for a counselor or ambassador role.","A camp activity portfolio, observed practice feedback, résumé, and mock interview reflection."]
   }
 ];
 
@@ -168,10 +174,10 @@ function renderModule() {
     button.tabIndex = selected ? 0 : -1;
   });
   byId('module-panel').setAttribute('aria-labelledby', `module-${state.module}`);
-  byId('module-label').textContent = `WEEKS ${item.weeks} · ${item.phase.toUpperCase()}`;
+  byId('module-label').textContent = `WEEKS ${item.weeks} · ${(state.track === 'high' ? item.highPhase : item.phase).toUpperCase()}`;
   byId('module-title').textContent = item.title;
-  byId('module-summary').textContent = item.summary;
-  byId('activity-track').textContent = `${curricula[state.track].name.toUpperCase()} · SAMPLE ACTIVITY`;
+  byId('module-summary').textContent = state.track === 'high' ? item.highSummary : item.summary;
+  byId('activity-track').textContent = `${curricula[state.track].name.toUpperCase()} · ${state.track === 'high' ? 'CAMP ROLE PRACTICE' : 'SAMPLE ACTIVITY'}`;
   byId('module-activity').textContent = item[state.track][0];
   byId('module-output').textContent = item[state.track][1];
   byId('module-visual').innerHTML = diagramStart + diagrams[state.module] + diagramEnd;
@@ -203,6 +209,9 @@ function setTrack(track) {
     return article;
   }));
   byId('journey-track').value = track;
+  byId('middle-curriculum-note').hidden = track !== 'middle';
+  byId('high-curriculum-note').hidden = track !== 'high';
+  byId('journey-intro').textContent = track === 'high' ? 'For high school students, each two-week module pairs environmental learning with counselor and ambassador practice, building toward a summer-ready activity portfolio.' : 'The sequence can be adapted to partner calendars, local environments, and student needs.';
   const emailBody = `Hello Phase 3 team,\n\nI would like to explore Urban Earth Academy for ${item.name.toLowerCase()} students.\n\nOrganization:\nCommunity / location:\nPreferred timeline:\nApproximate cohort size:\n\nThank you.`;
   byId('partner-email').href = `mailto:info@phase3training.org?subject=${encodeURIComponent('Urban Earth Academy partnership')}&body=${encodeURIComponent(emailBody)}`;
   renderModule();
@@ -271,4 +280,5 @@ document.addEventListener('keydown', event => {
 });
 window.matchMedia('(min-width: 801px)').addEventListener('change', closeMenu);
 
-setTrack('middle');
+const requestedTrack = new URLSearchParams(window.location.search).get('curriculum');
+setTrack(requestedTrack === 'high' ? 'high' : 'middle');
